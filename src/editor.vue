@@ -122,10 +122,11 @@
     watch: {
       // Watch content change
       content(newVal, oldVal) {
+        console.log('CONTENT changes');
         if (this.quill) {
           if (newVal && newVal !== this._content) {
             this._content = newVal
-            this.quill.pasteHTML(newVal)
+            this.quill.clipboard.dangerouslyPasteHTML(newVal, 'silent');
           } else if(!newVal) {
             this.quill.setText('')
           }
@@ -133,6 +134,7 @@
       },
       // Watch content change
       value(newVal, oldVal) {
+        console.log('VALUE changes');
         if (this.quill) {
           if (newVal && newVal !== this._content) {
             this._content = newVal
